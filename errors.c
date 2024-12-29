@@ -29,29 +29,28 @@ int error_duplicate(t_stack *a, int n)
     return (0);
 }
 
-void    free_stack(t_stack **stack)
+void	free_stack(t_stack **stack) //Define a function to free a stack if there are errors
 {
-    t_stack *next;
-    t_stack *current;
+	t_stack	*tmp; //To store the next node in the stack before the current node is freed, because once a node is freed, you can't access its next pointer
+	t_stack	*current;
 
-    if (!stack || !(*stack))
-        return ;
-    current = *stack;
-    while (current)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-    *stack = NULL; 
+	if (!stack) //Check for an empty stack
+		return ;
+	current = *stack;
+	while (current) //As long as a node exist in the stack
+	{
+		tmp = current->next; //Assign to `tmp` the pointer to the next node
+		current->nbr = 0; //Assigning the node to `0` before freeing is not strictly necessary but it can help catch potential bugs such as memory-leaks and improve debugging
+		free(current); //Free the current node, deallocating the memory occupied by that node
+		current = tmp; //Assign `tmp` as the current first node
+	}
+	*stack = NULL;
 }
 
 void    free_errors(t_stack **a)
 {
-    if (a && *a)
-    {
-        free_stack(a);
-        ft_printf("ERROR\n");
-    }
+    printf("Liberando nodo");
+    free_stack(a);
+    ft_printf("ERROR\n");
     exit(1);
 }

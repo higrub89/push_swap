@@ -13,7 +13,7 @@
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra 
 LIBFT = libft/libft.a
 RM = rm -rf
 GREEN = \033[1;32m

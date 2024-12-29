@@ -21,7 +21,6 @@ static long    push_atol(const char *s)
     return (result * sig);
 }
 
-
 static void append_node(t_stack **stack, int n)
 {
     t_stack	*node;

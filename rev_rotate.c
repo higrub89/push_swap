@@ -3,6 +3,7 @@
 static void rev_rotate(t_stack **stack)
 {
     t_stack *last;
+    
     if (!*stack || !(*stack)->next)
         return ;
     last = find_last(*stack);
