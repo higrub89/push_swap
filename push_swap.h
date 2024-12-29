@@ -14,11 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
 # include <stdbool.h>
-# include <unistd.h>
 
 typedef struct  s_stack
 {
@@ -43,6 +39,7 @@ void    free_errors(t_stack **a);
 
 // STACK INITIATION
 void	init_stack_a(t_stack **a, char **argv);
+char    **split_push_swap(char *s, char c);
 
 //NODES INITIATION
 void    init_nodes_a(t_stack *a, t_stack *b);

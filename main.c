@@ -12,41 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-void	deleted_content(void *content)
-{
-	free(content);
-}
-
-void    print_list(t_list *l)
-{
-	int	i;
-
-	i = 0;
-        while(l  != NULL)
-        {
-                printf("nodo[%i] =  %s\n", i, (char *)(l->content));
-                l = l->next;
-		i++;
-        }
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
-	t_list *n;
-
-	n = NULL;
-	i = 1;
-	while(argc > i)
-	{
-		ft_lstadd_back(&n, ft_lstnew(ft_strdup(argv[i++])));
-	}
-	print_list(n);
-	ft_lstclear(&n, deleted_content);
-	return (0);
-}*/
-
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -57,7 +22,7 @@ int	main(int argc, char **argv)
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
+		argv = split_push_swap(argv[1], ' ');
 	init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
@@ -69,5 +34,5 @@ int	main(int argc, char **argv)
 			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
-	return (0); ///////////
+	return (0);
 }

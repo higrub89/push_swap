@@ -31,25 +31,27 @@ int error_duplicate(t_stack *a, int n)
 
 void    free_stack(t_stack **stack)
 {
-    t_stack *tmp;
+    t_stack *next;
     t_stack *current;
 
-    if (!stack)
+    if (!stack || !(*stack))
         return ;
     current = *stack;
     while (current)
     {
-        tmp = current->next;
-        current->nbr = 0;
+        next = current->next;
         free(current);
-        current = tmp;
+        current = next;
     }
     *stack = NULL; 
 }
 
 void    free_errors(t_stack **a)
 {
-    free_stack(a);
-    ft_printf("ERROR\n");
+    if (a && *a)
+    {
+        free_stack(a);
+        ft_printf("ERROR\n");
+    }
     exit(1);
 }

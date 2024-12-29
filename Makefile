@@ -11,9 +11,10 @@
 # **************************************************************************** #
 
 NAME = push_swap
-LIBFT = libft/libft.a
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
+LIBFT = libft/libft.a
 RM = rm -rf
 GREEN = \033[1;32m
 
@@ -23,11 +24,13 @@ SRCS = main.c \
 	swap.c  \
 	errors.c \
 	init_a_to_b.c \
+	init_b_to_a.c \
 	push.c \
 	rev_rotate.c \
 	rotate.c \
 	sort_three.c \
 	sort_stacks.c \
+	split_push_swap.c \
 
 OBJ = $(SRCS:.c=.o)
 
@@ -36,7 +39,8 @@ OBJ = $(SRCS:.c=.o)
 	
 $(NAME) : $(OBJ) $(LIBFT)
 	@echo "$(GREEN)Compiling PUSH_SWAP ..."
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
+	cp $(LIBFT) $(NAME) 
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) 
 
 $(LIBFT) :
 	make bonus -C libft

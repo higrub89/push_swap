@@ -30,7 +30,7 @@ static void move_a_to_b(t_stack **a, t_stack **b)
         && !(cheapest_node->target_node->above_median))
         rev_rotate_both(a, b, cheapest_node);
     prep_for_push(a, cheapest_node, 'a');
-    prep_for_push(a, cheapest_node->target_node, 'b');
+    prep_for_push(b, cheapest_node->target_node, 'b');
     pb(b, a, false);
 }
 
@@ -56,6 +56,8 @@ void    sort_stacks(t_stack **a, t_stack **b)
     int len_a;
 
     len_a = stack_len(*a);
+    if (len_a-- > 3 && !stack_sorted(*a))
+        pb(b, a, false);
     if (len_a-- > 3 && !stack_sorted(*a))
         pb(b, a, false);
     while (len_a-- > 3 && !stack_sorted(*a))

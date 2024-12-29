@@ -1,5 +1,27 @@
 #include "push_swap.h"
 
+static long    push_atol(const char *s)
+{
+    long    result;
+    int     sig;
+
+    result = 0;
+    sig = 1;
+    while (*s == ' ' || *s == '\t' || *s == '\n' || \
+			*s == '\r' || *s == '\f' || *s == '\v')
+        s++;
+    if (*s == '-' || *s == '+')
+    {
+        if (*s == '-')
+            sig = -1;
+        s++;
+    }
+    while (ft_isdigit(*s))
+        result = result * 10 + (*s++ - '0');
+    return (result * sig);
+}
+
+
 static void append_node(t_stack **stack, int n)
 {
     t_stack	*node;
@@ -9,9 +31,12 @@ static void append_node(t_stack **stack, int n)
         return ;
     node = malloc(sizeof(t_stack));
     if (!node)
-        return ;
+	{
+		ft_printf("ERROR ASIGNACION MEMORIA\n");
+		return ;
+	}
     node->next = NULL;
-    node->nbr  = n;
+    node->nbr = n;
     node->cheapest = 0;
     if (!(*stack))
     {
@@ -35,12 +60,21 @@ void	init_stack_a(t_stack **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
+		{
+			ft_printf("ERROR DE SINTAXIS en %s\n", argv[i]);
 			free_errors(a);
-		n = ft_atol(argv[i]);
+		}
+		n = push_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
+		{
+			ft_printf("Numero fuera de rango %ld\n", n);
 			free_errors(a);
+		}
 		if (error_duplicate(*a, (int)n))
+		{
+			ft_printf("Numero duplicado %d\n", (int)n);
 			free_errors(a);
+		}
 		append_node(a, (int)n);
 		i++;
 	}

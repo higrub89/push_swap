@@ -7,6 +7,8 @@ static void swap(t_stack **head)
     *head = (*head)->next;
     (*head)->prev->prev = *head;
     (*head)->prev->next = (*head)->prev;
+    if ((*head)->next)
+        (*head)->next->prev = (*head)->prev;
     (*head)->next = (*head)->prev;
     (*head)->prev = NULL;
 }

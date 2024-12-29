@@ -47,6 +47,7 @@ SRC =	ft_isalpha.c \
 	ft_hexa.c 		   \
 	ft_unsig_putnbr.c  \
 	ft_printf.c		   \
+	ft_atol.c 			\
 
 BONUS =	ft_lstnew_bonus.c   \
 	ft_lstadd_front_bonus.c \
@@ -57,7 +58,7 @@ BONUS =	ft_lstnew_bonus.c   \
 	ft_lstclear_bonus.c     \
 	ft_lstiter_bonus.c      \
 	ft_lstmap_bonus.c       \
-	ft_atol.c 			    \
+	
 	
 OBJS = $(SRC:.c=.o)
 
