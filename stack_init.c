@@ -21,18 +21,18 @@ static long    push_atol(const char *s)
     return (result * sig);
 }
 
-static void append_node(t_stack **stack, int n)
+static int append_node(t_stack **stack, int n)
 {
     t_stack	*node;
     t_stack *last_node;
 
     if (!stack)
-        return ;
+        return (-1);
     node = malloc(sizeof(t_stack));
     if (!node)
 	{
 		ft_printf("ERROR ASIGNACION MEMORIA\n");
-		return ;
+		return (-1);
 	}
     node->next = NULL;
     node->nbr = n;
@@ -45,9 +45,16 @@ static void append_node(t_stack **stack, int n)
     else
     {
         last_node = find_last(*stack);
+		if (!last_node)
+		{
+			 ft_printf("ERROR: find_last devolvió NULL\n");
+            free(node);
+            return (-1);
+		}
         last_node->next = node;
         node->prev = last_node;
     }
+	return (0);
 }
 
 void	init_stack_a(t_stack **a, char **argv)
@@ -62,19 +69,26 @@ void	init_stack_a(t_stack **a, char **argv)
 		{
 			ft_printf("ERROR DE SINTAXIS en %s\n", argv[i]);
 			free_errors(a);
+			return ;
 		}
 		n = push_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 		{
 			ft_printf("Numero fuera de rango %ld\n", n);
 			free_errors(a);
+			return ;
 		}
 		if (error_duplicate(*a, (int)n))
 		{
 			ft_printf("Numero duplicado %d\n", (int)n);
 			free_errors(a);
+			return ;
 		}
-		append_node(a, (int)n);
+		if (append_node(a, (int)n) != 0)
+		{   ft_printf("ERROR al agregar nodo\n");
+            free_errors(a);
+            return;
+		}
 		i++;
 	}
 }
