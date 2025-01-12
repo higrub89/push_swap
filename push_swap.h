@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdbool.h>
+# include <ctype.h>
 
 typedef struct  s_stack
 {
