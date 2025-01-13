@@ -1,21 +1,38 @@
 #include "push_swap.c"
 
+char *trim_spaces(char *s)
+{
+    int start = 0, end = strlen(s);
+
+    // Eliminar espacios al principio
+    while (start < end && isspace(s[start]))
+        start++;
+
+    // Eliminar espacios al final
+    while (end > start && isspace(s[end - 1]))
+        end--;
+
+    // Crear una nueva cadena con los espacios eliminados
+    int trimmed_len = end - start;
+    char *trimmed = malloc(trimmed_len + 1);
+    if (!trimmed)
+        return NULL;
+
+    strncpy(trimmed, s + start, trimmed_len);
+    trimmed[trimmed_len] = '\0';
+    return trimmed;
+}
+
 int is_valid_number(char *s)
 {
     int i = 0;
-    int len = strlen(s);
+    int len;
 
     if (!s || len == 0)
         return (0);
 
-    // Eliminar espacios al principio
-    while (isspace(s[i]))
-        i++;
-
-    // Eliminar espacios al final
-    while (isspace(s[len - 1]))
-        len--;
-
+    len = strlen(s);
+    
     // Verificar que la cadena no quede vacía después de eliminar espacios
     if (i == len)
         return (0);
@@ -65,6 +82,7 @@ int main(int argc, char **argv)
     int i = 1;
     long num;
     char *endptr;
+    char *trimed_arg;
 
     if (argc < 2)
     {
@@ -81,13 +99,21 @@ int main(int argc, char **argv)
 
     while (i < argc)
     {
-        if (!is_valid_number(argv[i]))
+        trimed_arg = trim_spaces(argv[i]);
+        if (!trimed_arg)
+        {
+            printf("ERROR: Memory allocation failed for trimed argument\n");
+            free(numbers);
+            return (1);
+        }
+        if (!is_valid_number(trimed_arg))
         {
             printf("ERROR: Invalid argments\n");
             free(numbers);
             return (1);
         }
-        num = strtol(argv[i], &endptr, 10);
+
+        num = strtol(trimed_arg, &endptr, 10);
         if (*endptr != '\0')
         {
             printf("ERROR: invalid number format '%s'\n", argv[i]);
