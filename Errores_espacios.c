@@ -1,5 +1,5 @@
 #include "push_swap.c"
-
+/*
 char *trim_spaces(char *s)
 {
     int start = 0, end = strlen(s);
@@ -141,4 +141,4 @@ int main(int argc, char **argv)
     printf ("ALL ARGUMENTS ARE VALID\n");
     free(numbers);
     return (0);
-}
+}*/
