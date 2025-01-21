@@ -74,5 +74,5 @@ int main(int argc, char **argv)
         printf("%s\n", tem->data);
         tem = tem->prev;
     }
-    return (0); 
+    return (0);
 }

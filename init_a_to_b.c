@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    current_index(t_stack *stack)
+void     current_index(t_stack *stack)
 {
     int i;
     int median;

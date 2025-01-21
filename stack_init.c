@@ -1,5 +1,28 @@
 #include "push_swap.h"
 
+static char *trim_spaces(char *s)
+{
+    int start = 0, end = strlen(s);
+
+    // Eliminar espacios al principio
+    while (start < end && isspace(s[start]))
+        start++;
+
+    // Eliminar espacios al final
+    while (end > start && isspace(s[end - 1]))
+        end--;
+
+    // Crear una nueva cadena con los espacios eliminados
+    int trimmed_len = end - start;
+    char *trimmed = malloc(trimmed_len + 1);
+    if (!trimmed)
+        return NULL;
+
+    strncpy(trimmed, s + start, trimmed_len);
+    trimmed[trimmed_len] = '\0';
+    return trimmed;
+}
+
 static long    push_atol(const char *s)
 {
     long    result;

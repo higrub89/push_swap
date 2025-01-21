@@ -24,7 +24,7 @@ t_stack *find_last(t_stack *stack)
     return (stack);
 }
 
-bool    stack_sorted(t_stack *stack)
+bool     stack_sorted(t_stack *stack)
 {
     if (!stack)
         return (1);
