@@ -64,18 +64,28 @@ void	init_stack_a(t_stack_node **a, char **argv)
 {
 	long	n;
 	int		i;
+	int		j;
+	char	**args;
+	char	*arg;
 
 	i = 0;
 	while (argv[i])
 	{
-		if (error_syntax(argv[i]))
-			free_errors(a);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN) 
-			free_errors(a);
-		if (error_duplicate(*a, (int)n))
-			free_errors(a); 
-		append_node(a, (int)n); 
+		args = split_push_swap(argv[i], ' ');
+		j = 0;
+		while (args[j])
+		{
+			arg = remove_spaces(args[j]);
+			if (error_syntax(arg))
+				free_errors(a);
+			n = ft_atol(arg);
+			if (n > INT_MAX || n < INT_MIN) 
+				free_errors(a);
+			if (error_duplicate(*a, (int)n))
+				free_errors(a); 
+			append_node(a, (int)n);
+			j++;
+		}
 		i++;
 	}
 }

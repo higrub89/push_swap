@@ -43,6 +43,17 @@ int	error_duplicate(t_stack_node *a, int n)
 	return (0);
 }
 
+char *remove_spaces(char *str) {  /// impelementacion mia
+    char *out = str, *put = str;
+
+    for (; *str != '\0'; ++str) {
+        if (*str != ' ')
+            *put++ = *str;
+    }
+    *put = '\0';
+    return out;
+}
+
 void	free_stack(t_stack_node **stack) 
 {
 	t_stack_node	*tmp;  

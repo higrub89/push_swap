@@ -6,7 +6,7 @@
 #    By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 12:59:18 by rhiguita          #+#    #+#              #
-#    Updated: 2025/01/05 12:59:20 by rhiguita         ###   ########.fr        #
+#    Updated: 2025/01/21 20:16:53 by rhiguita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ NAME				= push_swap
 
 # Directories
 LIBFT				= ./libft/libft.a
-INC					= inc/
+INC					= -Iinc/
 SRC_DIR				= srcs/
 OBJ_DIR				= obj/
 
 # Compiler and CFlags
 CC					= gcc
-CFLAGS				= -Wall -Werror -Wextra -I
+CFLAGS				= -Wall -Werror -Wextra -g $(INC)
 RM					= rm -f
 
 # Source Files

@@ -35,10 +35,12 @@ int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
 void			free_errors(t_stack_node **a);
+char 			*remove_spaces(char *str);
 
 //***Stack initiation
 void			init_stack_a(t_stack_node **a, char **argv); 
-char			**split(char *s, char c); 
+char			**split_push_swap(char *s, char c); 
+//void process_arguments(int argc, char **argv, t_stack_node **a);
 //***Nodes initiation
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			init_nodes_b(t_stack_node *a, t_stack_node *b);
