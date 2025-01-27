@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 20:05:59 by rhiguita          #+#    #+#             */
+/*   Updated: 2025/01/27 20:06:03 by rhiguita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/ft_printf.h"
 
 static int	ft_specifier(char c, va_list ap)
@@ -24,7 +36,7 @@ static int	ft_specifier(char c, va_list ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		count; 
+	int		count;
 
 	if (!format)
 		return (0);

@@ -12,17 +12,14 @@
 
 #include "../../inc/push_swap.h"
 
-int	error_syntax(char *str_n) 
+int	error_syntax(char *str_n)
 {
-	if (!(*str_n == '+'
-			|| *str_n == '-'
-			|| (*str_n >= '0' && *str_n <= '9'))) 
+	if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
 		return (1);
-	if ((*str_n == '+'
-			|| *str_n == '-')
-		&& !(str_n[1] >= '0' && str_n[1] <= '9')) 
+	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0'
+			&& str_n[1] <= '9'))
 		return (1);
-	while (*++str_n) 
+	while (*++str_n)
 	{
 		if (!(*str_n >= '0' && *str_n <= '9'))
 			return (1);
@@ -30,44 +27,50 @@ int	error_syntax(char *str_n)
 	return (0);
 }
 
-int	error_duplicate(t_stack_node *a, int n) 
+int	error_duplicate(t_stack_node *a, int n)
 {
-	if (!a) 
+	if (!a)
 		return (0);
-	while (a) 
+	while (a)
 	{
-		if (a->nbr == n) 
+		if (a->nbr == n)
 			return (1);
-		a = a->next; 
+		a = a->next;
 	}
 	return (0);
 }
 
-char *remove_spaces(char *str) {  /// impelementacion mia
-    char *out = str, *put = str;
+char	*remove_spaces(char *str)
+{
+	char	*out;
+	char	*put;
 
-    for (; *str != '\0'; ++str) {
-        if (*str != ' ')
-            *put++ = *str;
-    }
-    *put = '\0';
-    return out;
+	out = str;
+	put = str;
+	while (*str != '\0')
+	{
+		if (*str != ' ')
+			*put++ = *str;
+		str++;
+	}
+	*put = '\0';
+	return (out);
 }
 
-void	free_stack(t_stack_node **stack) 
+void	free_stack(t_stack_node **stack)
 {
-	t_stack_node	*tmp;  
+	t_stack_node	*tmp;
 	t_stack_node	*current;
 
-	if (!stack) 
+	if (!stack)
 		return ;
 	current = *stack;
-	while (current) 
+	while (current)
 	{
-		tmp = current->next; 
+		tmp = current->next;
 		current->nbr = 0;
-		free(current); 
-		current = tmp; 
+		free(current);
+		current = tmp;
 	}
 	*stack = NULL;
 }

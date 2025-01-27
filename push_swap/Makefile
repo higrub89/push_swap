@@ -38,6 +38,7 @@ PUSH_SWAP_DIR		=	$(SRC_DIR)push_swap/handle_errors.c \
 						$(SRC_DIR)push_swap/push_swap.c \
 						$(SRC_DIR)push_swap/split.c \
 						$(SRC_DIR)push_swap/stack_init.c \
+						$(SRC_DIR)push_swap/stack_push.c \
 						$(SRC_DIR)push_swap/stack_utils.c
 
 # Concatenate all source files
